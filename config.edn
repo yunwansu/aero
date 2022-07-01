@@ -1,1 +1,4 @@
-{:greeting "Hello World!"}
+{:greeting "Hello World!"
+ :env #env "PATH"
+ :cond #cond {:default "default"
+              :prod "prod"}}
