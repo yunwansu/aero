@@ -5,4 +5,5 @@
  :cond #cond {:default "default"
               :prod "prod"}
  :set-hostname #hostname {#{"fake-hostname" "yunwansu"} "set-hostname" :default "return this if not found hostname"}
- :string-hostname #hostname {"yunwansu" "string-hostname"}}
+ :string-hostname #hostname {"yunwansu" "string-hostname"}
+ :envf #envf ["my home env is : %s" "HOME"]}

@@ -8,6 +8,9 @@
   (cond (vector? value) (or (System/getenv (str (first value))) (second value))
         :otherwise (System/getenv (str value))))
 
+(defmethod reader 'envf [opts tag [fmt & args]]
+  (apply format fmt (map (partial reader nil 'env) args)))
+
 (defmethod reader 'cond [{:keys [profile]} tag value]
   (cond (contains? value profile) (get value profile)
         (contains? value :default) (get value :default)
