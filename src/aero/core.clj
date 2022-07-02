@@ -23,9 +23,10 @@
 (defn read-config
   ([r {:keys [profile]}]
    (let [hostname (-> (sh/sh "hostname") :out trim)]
-     (edn/read
-      {:readers (readers {:profile (or profile :default)
-                          :hostname hostname})}
-      (java.io.PushbackReader. (io/reader r)))))
+     (with-open [pr (java.io.PushbackReader. (io/reader r))]
+       (edn/read {:eof nil
+                  :readers (readers {:profile (or profile :default)
+                                     :hostname hostname})}
+                 pr))))
   ([r]
    (read-config r {})))
