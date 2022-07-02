@@ -14,7 +14,7 @@
 (defn read-config
   ([r {:keys [profile]}]
    (edn/read
-    {:readers (readers profile)}
+    {:readers (readers (or profile :default))}
     (java.io.PushbackReader. (io/reader r))))
   ([r]
-   (read-config r {:profile :default})))
+   (read-config r {})))
