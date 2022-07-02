@@ -11,6 +11,9 @@
 (defmethod reader 'envf [opts tag [fmt & args]]
   (apply format fmt (map (partial reader nil 'env) args)))
 
+(defmethod reader 'format [opts tag [fmt & args]]
+  (apply format fmt args))
+
 (defmethod reader 'cond [{:keys [profile]} tag value]
   (cond (contains? value profile) (get value profile)
         (contains? value :default) (get value :default)
@@ -24,3 +27,6 @@
                   v))
               value)
         (get value :default))))
+
+(defmethod reader :default [_ _ value]
+  nil)

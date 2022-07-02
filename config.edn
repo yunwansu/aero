@@ -6,4 +6,6 @@
               :prod "prod"}
  :set-hostname #hostname {#{"fake-hostname" "yunwansu"} "set-hostname" :default "return this if not found hostname"}
  :string-hostname #hostname {"yunwansu" "string-hostname"}
- :envf #envf ["my home env is : %s" "HOME"]}
+ :envf #envf ["my home env is : %s" "HOME"]
+ :format #format ["My favorite flavor is %s %s" #env [TERM "flaa"] #myflavor :favorite]
+ :unknown-tag #unknown-tag {}}

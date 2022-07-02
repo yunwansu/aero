@@ -6,7 +6,8 @@
 (defn read-config
   ([r opts]
    (let [default-profile {:profile :default}
-         default-reader (->> (merge default-profile opts) (partial reader))]
+         config-file-path {:filepath (str r)}
+         default-reader (->> (merge default-profile config-file-path opts) (partial reader))]
      (with-open [pr (java.io.PushbackReader. (io/reader r))]
        (edn/read {:eof nil
                   :default default-reader}
