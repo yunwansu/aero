@@ -3,4 +3,6 @@
  :undefined-env-vector #env ["undefined-env" "default-env"]
  :path-env-vector #env ["PATH" "default-env"]
  :cond #cond {:default "default"
-              :prod "prod"}}
+              :prod "prod"}
+ :set-hostname #hostname {#{"fake-hostname" "yunwansu"} "set-hostname" :default "return this if not found hostname"}
+ :string-hostname #hostname {"yunwansu" "string-hostname"}}
