@@ -3,7 +3,9 @@
             [clojure.java.io :as io]))
 
 (defn readers [profile]
-  {'env (fn [x] (System/getenv (str x)))
+  {'env (fn [x]
+          (cond (vector? x) (or (System/getenv (str (first x))) (second x))
+                :otherwise (System/getenv (str x))))
    'cond (fn [m]
            (cond (contains? m profile) (clojure.core/get m profile)
                  (contains? m :default) (clojure.core/get m :default)

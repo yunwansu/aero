@@ -1,4 +1,6 @@
 {:greeting "Hello World!"
  :env #env "PATH"
+ :undefined-env-vector #env ["undefined-env" "default-env"]
+ :path-env-vector #env ["PATH" "default-env"]
  :cond #cond {:default "default"
               :prod "prod"}}
