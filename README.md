@@ -2,6 +2,7 @@
 
 https://github.com/juxt/aero
 
+https://github.com/edn-format/edn
 
 # run
 
