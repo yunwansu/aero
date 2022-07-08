@@ -8,4 +8,7 @@
  :string-hostname #hostname {"yunwansu" "string-hostname"}
  :envf #envf ["my home env is : %s" "HOME"]
  :format #format ["My favorite flavor is %s %s" #env [TERM "flaa"] #myflavor :favorite]
- :unknown-tag #unknown-tag {}}
+ :unknown-tag #unknown-tag {}
+ :cond-edn #file "cond.edn"
+ :test #path [:greeting]
+ :remote #file "env.edn"}
