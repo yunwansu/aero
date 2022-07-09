@@ -1,7 +1,8 @@
 {:greeting "Hello World!"
- :env #env "PATH"
+ :path-test #path [:greeting]
+ :env #env "HOME"
  :undefined-env-vector #env ["undefined-env" "default-env"]
- :path-env-vector #env ["PATH" "default-env"]
+ :path-env-vector #env ["HOME" "default-env"]
  :cond #cond {:default "default"
               :prod "prod"}
  :set-hostname #hostname {#{"fake-hostname" "yunwansu"} "set-hostname" :default "return this if not found hostname"}
@@ -10,5 +11,7 @@
  :format #format ["My favorite flavor is %s %s" #env [TERM "flaa"] #myflavor :favorite]
  :unknown-tag #unknown-tag {}
  :cond-edn #file "cond.edn"
- :test #path [:greeting]
+ :db-connection "datomic:dynamo://dynamodb"
+ :webserver {:db #path [:db-connection]}
+ :analytics {:db #path [:db-connection]}
  :remote #file "env.edn"}

@@ -3,7 +3,8 @@
             [clojure.java.io :as io]
             [clojure.string :refer [trim]]
             [clojure.java.shell :as sh]
-            [clojure.walk :refer [walk]]
+            [clojure.walk :refer [postwalk]]
+            [clojure.pprint :refer [pprint]]
             [aero.reader :refer [reader transform]]))
 
 (declare read-config)
@@ -35,6 +36,9 @@
 (defmethod reader 'file [opts tag value]
   (read-config value opts))
 
+(defmethod reader 'path [opts tag value]
+  (with-meta value {::tag 'path}))
+
 (defmethod reader :default [_ tag value]
   (if tag
     (try (with-meta value {::tag tag})
@@ -42,12 +46,11 @@
     value))
 
 (defmethod transform 'path [opts tag config-map]
-  (walk (fn [v]
-          (if (= 'path (::tag (meta (second v))))
-            (update-in v [1] (fn [link] (get-in config-map link)))
-            v))
-        identity
-        config-map))
+  (postwalk (fn [v]
+              (if (= 'path (::tag (meta v)))
+                (get-in config-map v)
+                v))
+            config-map))
 
 (defmethod transform :default [opts tag config-map]
   config-map)

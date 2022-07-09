@@ -13,5 +13,5 @@ $ clj -M:run
 in clojure repl..
 
 ``` clojure
-aero.core => (read-config "config.edn")
+aero.core => (pprint (read-config "config.edn" {:transforms [:path]}))
 ```
